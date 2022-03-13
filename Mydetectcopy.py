@@ -72,7 +72,7 @@ if __name__ == '__main__':
     model = resnet50()
 
     # 加载权重
-    model.load_state_dict(torch.load('epoch_49_valloss_2.7221_yolo.pth', map_location='cpu'))
+    model.load_state_dict(torch.load('yolo.pth', map_location='cpu'))
 
     # 如果在预测的时候忘记使用model.eval()，会导致不一致的预测结果
     model.eval()
