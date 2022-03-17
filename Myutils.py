@@ -137,20 +137,6 @@ def mynms(bboxes, scores, threshold=0.1):
         if order.numel() == 1:
             break
 
-        # 将输入input张量每个元素的值压缩到区间 [min,max]，并返回结果到一个新张量
-        # xx1 = x1[order[1:]].clamp(min=x1[i])
-        # yy1 = y1[order[1:]].clamp(min=y1[i])
-        # xx2 = x2[order[1:]].clamp(max=x2[i])
-        # yy2 = y2[order[1:]].clamp(max=y2[i])
-        # w = (xx2 - xx1).clamp(min=0)
-        # h = (yy2 - yy1).clamp(min=0)
-        # xx1 = torch.clamp(x1[order[1:]], min=x1[i])
-        # yy1 = torch.clamp(y1[order[1:]], min=y1[i])
-        # xx2 = torch.clamp(x2[order[1:]], min=x2[i])
-        # yy2 = torch.clamp(y2[order[1:]], min=y2[i])
-        # w = torch.clamp((xx2-xx1), min=0)
-        # h = torch.clamp((yy2-yy1), min=0)
-
         xx1 = np.maximum(x1[i], x1[order[1:]])
         yy1 = np.maximum(y1[i], y1[order[1:]])
         xx2 = np.minimum(x2[i], x2[order[1:]])
