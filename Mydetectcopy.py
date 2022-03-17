@@ -3,7 +3,7 @@ import os
 import cv2
 import numpy as np
 from Myresnet import resnet50
-from Myutils import decoder, VOC_CLASSES, Color
+from Myutilscopy import decoder, VOC_CLASSES, Color
 import torchvision.transforms as transforms
 
 data_dir = "D:\\PythonProject\\Yolov1\\images"
