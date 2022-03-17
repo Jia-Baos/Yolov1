@@ -238,7 +238,7 @@ class ResNet(nn.Module):
         x = self.bn_end(x)
         x = self.sigmoid(x)  # 归一化到0-1
         x = x.permute(0, 2, 3, 1)  # (1,14,14,30)
-        print("the output of net: {}".format(x.size()))
+        print("the output of net(Myresnet.py): {}".format(x.size()))
 
         return x
 

@@ -25,13 +25,14 @@ def predict(model, img_name, img_path, run_dir):
     img = cv2.resize(image, (448, 448))
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     mean = (123, 117, 104)  # RGB
-    # 图像每个像素三通道的数值分别减去mean
+    # 图像每个像素三通道的数值分别减去mean，类型也转化了
     img = img - np.array(mean, dtype=np.float32)
 
     img = transform(img)
     img = torch.unsqueeze(img, dim=0)
+    print("the input of net: {}".format(img.size()))
     pred = model(img)  # 1x14x14x30
-    print("the output of net: {}".format(pred.size()))
+    print("the output of net(Mypredict.py): {}".format(pred.size()))
 
     boxes, cls_indexs, probs = decoder(pred)
     print("结果框的相对位置、类别")
@@ -62,11 +63,12 @@ def predict(model, img_name, img_path, run_dir):
             cv2.putText(image, label, (p1[0], p1[1] + baseline), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1, 8)
 
     save_path = os.path.join(run_dir, img_name)
-    cv2.imwrite(save_path, image)
+    # cv2.imwrite(save_path, image)
+    cv2.imshow("result", image)
+    cv2.waitKey()
 
 
 if __name__ == '__main__':
-
     # 加载模型
     print('load model...')
     model = resnet50()
